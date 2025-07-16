@@ -1,42 +1,46 @@
-import React, { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   loadPage,
   loadOlder,
-  sendMessage
-} from '../features/messages/messagesThunks';
-import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import ChatList from '../components/ChatList';
-import LoadingSkeleton from '../components/LoadingSkeleton';
+  sendMessage,
+} from "../features/messages/messagesThunks";
+import useInfiniteScroll from "../hooks/useInfiniteScroll";
+import ChatList from "../components/ChatList";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 
 export default function Chatroom() {
   const { id: chatroomId } = useParams();
   const dispatch = useDispatch();
-  const { byPage, currentPage, loadingOlder, typing } = useSelector(s => s.messages);
+  const { byPage, currentPage, loadingOlder, typing } = useSelector(
+    (s) => s.messages
+  );
   const scrollRef = useRef();
 
   // ⬇️ useEffect to load page + restore image
   useEffect(() => {
-  const payload = { chatroomId, page: 1 };
-  dispatch(loadPage(payload));
+    const payload = { chatroomId, page: 1 };
+    dispatch(loadPage(payload));
 
-  const lastImage = localStorage.getItem(`chat-${chatroomId}-lastImage`);
-  if (lastImage) {
-    const restoredMessage = {
-      id: `restored-${Date.now()}`,
-      text: '',
-      image: lastImage,
-      sender: 'user',
-      timestamp: Date.now()
-    };
-    dispatch(sendMessage.fulfilled(
-      restoredMessage,
-      '',
-      { chatroomId, text: '', image: lastImage }
-    ));
-  }
-}, [chatroomId, dispatch]); // ✅ include dispatch
+    const lastImage = localStorage.getItem(`chat-${chatroomId}-lastImage`);
+    if (lastImage) {
+      const restoredMessage = {
+        id: `restored-${Date.now()}`,
+        text: "",
+        image: lastImage,
+        sender: "user",
+        timestamp: Date.now(),
+      };
+      dispatch(
+        sendMessage.fulfilled(restoredMessage, "", {
+          chatroomId,
+          text: "",
+          image: lastImage,
+        })
+      );
+    }
+  }, [chatroomId, dispatch]); // ✅ include dispatch
 
   // ⬇️ Infinite scroll to load older pages
   useInfiniteScroll(scrollRef, () => {
@@ -47,10 +51,12 @@ export default function Chatroom() {
   });
 
   // ⬇️ Auto-scroll to latest
+  const currentMessages = byPage[currentPage]?.length;
+
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [byPage[currentPage]?.length, typing]);
+  }, [currentMessages, typing]);
 
   const allMessages = Object.values(byPage)
     .flat()
