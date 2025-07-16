@@ -71,6 +71,27 @@ gemini-frontend-clone/
 ├── package.json           # Scripts & dependencies
 └── README.md              # This documentation
 ```
+## 📁 Project Images
+```
+### 🔐 Login Page
+<img width="1077" height="753" alt="login page" src="https://github.com/user-attachments/assets/d32c0e3e-eefd-483a-9681-9e747bcd920f" />
+
+### 🔐 Verify Otp Page
+<img width="900" height="708" alt="verify otp" src="https://github.com/user-attachments/assets/573d416a-26e0-4141-b05c-62fba0674cba" />
+
+### 🔐 Dashboard without sidebar - Dark Theme
+<img width="1918" height="908" alt="dashboard without sidebar - dark theme" src="https://github.com/user-attachments/assets/68fdc9d4-4ffb-4392-a67a-119f2377e108" />
+
+### 🔐 Dashboard with sample chats and sidebar - Light Theme
+<img width="1918" height="910" alt="dashboard with sample chat sidebar - light theme" src="https://github.com/user-attachments/assets/4a8b3a1e-951a-4e6e-94e8-777f154c17fe" />
+
+### 🔐 Mobile view - Dark Theme
+<img width="308" height="603" alt="mobile view darkmode" src="https://github.com/user-attachments/assets/ade69960-e424-49cc-9130-1222d16dab45" />
+
+### 🔐 Mobile view with Chats and Sidebar - Light Theme
+<img width="288" height="596" alt="mobile view with chats and sidebar with light theme" src="https://github.com/user-attachments/assets/fa112267-cc19-4412-9d6b-e93c954c34f1" />
+
+```
 
 ---
 
