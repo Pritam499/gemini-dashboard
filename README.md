@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# Gemini Frontend Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A demo chat application inspired by Google Gemini, built purely in React (JavaScript) with simulated OTP login, chatroom management, AI‑style messaging, image uploads, and modern UX/UI features.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔗 Live Demo
 
-### `npm start`
+[Your Live App URL on Vercel or Netlify]()
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Tech Stack
 
-### `npm test`
+- **Framework**: React (Create React App)  
+- **State Management**: Redux Toolkit  
+- **Form Validation**: React Hook Form + Zod  
+- **Styling**: Tailwind CSS  
+- **Routing**: React Router v6  
+- **Icons**: react-icons  
+- **Deployment**: Vercel or Netlify  
+- **Data Persistence**: localStorage  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Setup & Run
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repo**  
+   ```bash
+   git clone https://github.com/your-username/gemini-frontend-clone.git
+   cd gemini-frontend-clone
+Install dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm install
+Start development server
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+npm start
+App will open at http://localhost:3000/
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Build for production
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm run build
+📁 Folder Structure
 
-## Learn More
+gemini-frontend-clone/
+├── public/                # Static assets (favicon, index.html)
+├── src/
+│   ├── api/               # Axios client + REST countries helper
+│   ├── components/        # Reusable UI components (ChatBubble, ChatInput…)
+│   ├── features/          # Redux slices & thunks (auth, chatrooms, messages)
+│   ├── hooks/             # Custom React hooks (useDebounce, useInfiniteScroll…)
+│   ├── pages/             # Route-level pages (Login, Signup, Dashboard, Chatroom)
+│   ├── store/             # Redux store setup
+│   ├── utils/             # Utility functions (throttle, formatDate, base64)
+│   ├── App.jsx            # Main app with routes
+│   └── index.js           # Entry point
+├── tailwind.config.js     # Tailwind configuration
+├── postcss.config.js      # PostCSS setup
+├── package.json           # Scripts & dependencies
+└── README.md              # This documentation
+✨ Features
+Authentication
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+OTP Login/Signup with country‑code selection
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Country codes fetched from [restcountries.com]
 
-### Code Splitting
+Simulated OTP send/verify via setTimeout
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Form validation with React Hook Form + Zod
 
-### Analyzing the Bundle Size
+Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+List of chatrooms
 
-### Making a Progressive Web App
+Create/Delete chatrooms with confirmation toasts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Debounced search bar to filter by title
 
-### Advanced Configuration
+Chatroom Interface
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+User & AI messages with timestamps
 
-### Deployment
+Typing indicator (“Gemini is typing…”)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Simulated AI replies after delay + throttling
 
-### `npm run build` fails to minify
+Auto‑scroll to latest message
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Reverse infinite scroll to load older messages (dummy data)
+
+Pagination (20 messages per page)
+
+Image upload (base64 preview)
+
+Copy‑to‑clipboard on message hover
+
+Global UX
+
+Mobile responsive via Tailwind’s breakpoints
+
+Dark/light mode toggle (persisted in localStorage)
+
+Loading skeletons for chatrooms & messages
+
+Toast notifications for key actions
+
+Keyboard accessibility for all controls
+
+🛠 Implementation Details
+Throttling & Debounce
+
+useDebounce hook for search input and API calls
+
+useThrottledTimeout for AI response delay
+
+Pagination & Infinite Scroll
+
+Redux state stores byPage object
+
+useInfiniteScroll hook watches scroll position at top to load older pages
+
+Form Validation
+
+Zod schemas define required/format rules
+
+React Hook Form + zodResolver provides error messages
+
+Image Upload
+
+FileReader → Base64 string
+
+Preview shown immediately in UI
+
+Latest upload persisted to localStorage per chatroom
+
+Dark Mode
+
+CSS dark: variants in Tailwind
+
+Class toggle on <html> by DarkModeToggle or sidebar button
