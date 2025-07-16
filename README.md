@@ -1,12 +1,13 @@
-# Gemini Frontend Clone
+# 📚 Gemini Frontend Clone
 
-A demo chat application inspired by Google Gemini, built purely in React (JavaScript) with simulated OTP login, chatroom management, AI‑style messaging, image uploads, and modern UX/UI features.
+A demo conversational AI chat application inspired by Google Gemini.
+Built with React, Redux Toolkit, Tailwind CSS, and simulates OTP login, chatroom management, AI-style messaging, image uploads, dark/light theming, accessibility, and more.
 
 ---
 
 ## 🔗 Live Demo
 
-[Your Live App URL on Vercel or Netlify]()
+[Try it out 🚀](https://gemini-dashboard.netlify.app/)
 
 ---
 
@@ -29,22 +30,30 @@ A demo chat application inspired by Google Gemini, built purely in React (JavaSc
    ```bash
    git clone https://github.com/your-username/gemini-frontend-clone.git
    cd gemini-frontend-clone
-Install dependencies
+   ```
 
+2. **Install dependencies**  
+   ```bash
+   npm install
+   ```
 
-npm install
-Start development server
+3. **Start development server**  
+   ```bash
+   npm start
+   ```
 
+   App will open at http://localhost:3000/
 
-npm start
-App will open at http://localhost:3000/
+4. **Build for production**  
+   ```bash
+   npm run build
+   ```
 
-Build for production
+---
 
+## 📁 Folder Structure
 
-npm run build
-📁 Folder Structure
-
+```
 gemini-frontend-clone/
 ├── public/                # Static assets (favicon, index.html)
 ├── src/
@@ -61,84 +70,70 @@ gemini-frontend-clone/
 ├── postcss.config.js      # PostCSS setup
 ├── package.json           # Scripts & dependencies
 └── README.md              # This documentation
-✨ Features
-Authentication
+```
 
-OTP Login/Signup with country‑code selection
+---
 
-Country codes fetched from [restcountries.com]
+## ✨ Features
 
-Simulated OTP send/verify via setTimeout
+### 🔐 Authentication
 
-Form validation with React Hook Form + Zod
+- OTP Login/Signup with country‑code selection  
+- Country codes fetched from [restcountries.com]  
+- Simulated OTP send/verify via `setTimeout`  
+- Form validation with React Hook Form + Zod  
 
-Dashboard
+### 🧭 Dashboard
 
-List of chatrooms
+- List of chatrooms  
+- Create/Delete chatrooms with confirmation toasts  
+- Debounced search bar to filter by title  
 
-Create/Delete chatrooms with confirmation toasts
+### 💬 Chatroom Interface
 
-Debounced search bar to filter by title
+- User & AI messages with timestamps  
+- Typing indicator (“Gemini is typing…”)  
+- Simulated AI replies after delay + throttling  
+- Auto‑scroll to latest message  
+- Reverse infinite scroll to load older messages (dummy data)  
+- Pagination (20 messages per page)  
+- Image upload (base64 preview)  
+- Copy‑to‑clipboard on message hover  
 
-Chatroom Interface
+### 🌍 Global UX
 
-User & AI messages with timestamps
+- Mobile responsive via Tailwind’s breakpoints  
+- Dark/light mode toggle (persisted in localStorage)  
+- Loading skeletons for chatrooms & messages  
+- Toast notifications for key actions  
+- Keyboard accessibility for all controls  
 
-Typing indicator (“Gemini is typing…”)
+---
 
-Simulated AI replies after delay + throttling
+## 🛠 Implementation Details
 
-Auto‑scroll to latest message
+### ⏱ Throttling & Debounce
 
-Reverse infinite scroll to load older messages (dummy data)
+- `useDebounce` hook for search input and API calls  
+- `useThrottledTimeout` for AI response delay  
 
-Pagination (20 messages per page)
+### 📦 Pagination & Infinite Scroll
 
-Image upload (base64 preview)
+- Redux state stores `byPage` object  
+- `useInfiniteScroll` hook watches scroll position at top to load older pages  
 
-Copy‑to‑clipboard on message hover
+### ✅ Form Validation
 
-Global UX
+- Zod schemas define required/format rules  
+- React Hook Form + zodResolver provides error messages  
 
-Mobile responsive via Tailwind’s breakpoints
+### 🖼 Image Upload
 
-Dark/light mode toggle (persisted in localStorage)
+- FileReader → Base64 string  
+- Preview shown immediately in UI  
+- Latest upload persisted to `localStorage` per chatroom  
 
-Loading skeletons for chatrooms & messages
+### 🌙 Dark Mode
 
-Toast notifications for key actions
-
-Keyboard accessibility for all controls
-
-🛠 Implementation Details
-Throttling & Debounce
-
-useDebounce hook for search input and API calls
-
-useThrottledTimeout for AI response delay
-
-Pagination & Infinite Scroll
-
-Redux state stores byPage object
-
-useInfiniteScroll hook watches scroll position at top to load older pages
-
-Form Validation
-
-Zod schemas define required/format rules
-
-React Hook Form + zodResolver provides error messages
-
-Image Upload
-
-FileReader → Base64 string
-
-Preview shown immediately in UI
-
-Latest upload persisted to localStorage per chatroom
-
-Dark Mode
-
-CSS dark: variants in Tailwind
-
-Class toggle on <html> by DarkModeToggle or sidebar button
+- CSS `dark:` variants in Tailwind  
+- Class toggle on `<html>` via DarkModeToggle or sidebar button
