@@ -18,27 +18,25 @@ export default function Chatroom() {
 
   // ⬇️ useEffect to load page + restore image
   useEffect(() => {
-    if (!chatroomId) return;
+  const payload = { chatroomId, page: 1 };
+  dispatch(loadPage(payload));
 
-    const payload = { chatroomId, page: 1 };
-    dispatch(loadPage(payload));
-
-    const lastImage = localStorage.getItem(`chat-${chatroomId}-lastImage`);
-    if (lastImage) {
-      const restoredMessage = {
-        id: `restored-${Date.now()}`,
-        text: '',
-        image: lastImage,
-        sender: 'user',
-        timestamp: Date.now()
-      };
-      dispatch(sendMessage.fulfilled(
-        restoredMessage,
-        '',
-        { chatroomId, text: '', image: lastImage }
-      ));
-    }
-  }, [chatroomId]); // ✅ simplified deps (dispatch excluded for stability)
+  const lastImage = localStorage.getItem(`chat-${chatroomId}-lastImage`);
+  if (lastImage) {
+    const restoredMessage = {
+      id: `restored-${Date.now()}`,
+      text: '',
+      image: lastImage,
+      sender: 'user',
+      timestamp: Date.now()
+    };
+    dispatch(sendMessage.fulfilled(
+      restoredMessage,
+      '',
+      { chatroomId, text: '', image: lastImage }
+    ));
+  }
+}, [chatroomId, dispatch]); // ✅ include dispatch
 
   // ⬇️ Infinite scroll to load older pages
   useInfiniteScroll(scrollRef, () => {
