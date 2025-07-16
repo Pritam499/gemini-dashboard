@@ -72,7 +72,6 @@ gemini-frontend-clone/
 └── README.md              # This documentation
 ```
 ## 📁 Project Images
-```
 ### 🔐 Login Page
 <img width="1077" height="753" alt="login page" src="https://github.com/user-attachments/assets/d32c0e3e-eefd-483a-9681-9e747bcd920f" />
 
@@ -90,8 +89,6 @@ gemini-frontend-clone/
 
 ### 🔐 Mobile view with Chats and Sidebar - Light Theme
 <img width="288" height="596" alt="mobile view with chats and sidebar with light theme" src="https://github.com/user-attachments/assets/fa112267-cc19-4412-9d6b-e93c954c34f1" />
-
-```
 
 ---
 
