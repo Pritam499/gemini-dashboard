@@ -28,8 +28,8 @@ Built with React, Redux Toolkit, Tailwind CSS, and simulates OTP login, chatroom
 
 1. **Clone the repo**  
    ```bash
-   git clone https://github.com/your-username/gemini-frontend-clone.git
-   cd gemini-frontend-clone
+   git clone https://github.com/Pritam499/gemini-dashboard.git
+   cd gemini-dashboard
    ```
 
 2. **Install dependencies**  
